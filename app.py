@@ -3,7 +3,7 @@ from telethon import TelegramClient, events
 
 
 api_id = int(os.environ.get('api_id', 5000))
-api_hash = int(os.environ.get('api_hash', 5000))
+api_hash = str(os.environ.get('api_hash', 5000))
 
 client = TelegramClient('anon', api_id, api_hash)
 
