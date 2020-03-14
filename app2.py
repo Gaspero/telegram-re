@@ -61,7 +61,7 @@ PORT = int(os.environ.get('PORT', '8000'))
 
 config = hypercorn.Config()
 config._bind = [f'0.0.0.0:{PORT}']
-config._log = logging.Logger
+# config._log = logging.Logger
 
 # Telethon client
 client = TelegramClient(MemorySession(), API_ID, API_HASH)
