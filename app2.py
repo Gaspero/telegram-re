@@ -11,9 +11,10 @@ logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s'
 
 
 def get_env(name, message):
-    if name in os.environ:
-        return os.environ[name]
-    return input(message)
+    # if name in os.environ:
+    #     return os.environ[name]
+    # return input(message)
+    return os.environ.get(name, '')
 
 
 BASE_TEMPLATE = '''
