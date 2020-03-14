@@ -5,6 +5,7 @@ import hypercorn.asyncio
 from quart import Quart, render_template_string, request
 
 from telethon import TelegramClient, utils, events
+from telethon.sessions import MemorySession
 import logging
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
                     level=logging.WARNING)
@@ -58,9 +59,10 @@ PORT = int(os.environ.get('PORT', '8000'))
 
 config = hypercorn.Config()
 config._bind = [f'0.0.0.0:{PORT}']
+config._log = logging
 
 # Telethon client
-client = TelegramClient(SESSION, API_ID, API_HASH)
+client = TelegramClient(MemorySession, API_ID, API_HASH)
 # client.parse_mode = 'html'  # <- Render things nicely
 phone = None
 
