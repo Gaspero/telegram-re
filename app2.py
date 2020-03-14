@@ -69,7 +69,6 @@ client = TelegramClient(MemorySession(), API_ID, API_HASH)
 # client.parse_mode = 'html'  # <- Render things nicely
 # phone = None
 phone = os.environ.get('PHONE', '')
-config.log.info(phone)
 
 # Quart app
 app = Quart(__name__)
@@ -80,6 +79,7 @@ app.secret_key = 'CHANGE THIS TO SOMETHING SECRET'
 @app.before_serving
 async def startup():
     await client.connect()
+    await config.log.info(phone)
     await client.send_code_request(phone)
 
 
