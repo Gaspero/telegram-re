@@ -55,6 +55,8 @@ API_HASH = os.environ.get('API_HASH', '')
 MASTER = int(os.environ.get('MASTER', '0'))
 SLAVE = int(os.environ.get('SLAVE', '0'))
 
+config = hypercorn.Config()
+config._bind = ['127.0.0.1:80']
 
 # Telethon client
 client = TelegramClient(SESSION, API_ID, API_HASH)
@@ -118,7 +120,7 @@ async def my_event_handler(event):
 
 
 async def main():
-    await hypercorn.asyncio.serve(app, hypercorn.Config())
+    await hypercorn.asyncio.serve(app, config)
     client.start()
     client.run_until_disconnected()
 
