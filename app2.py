@@ -63,8 +63,8 @@ config = hypercorn.Config()
 config._bind = [f'0.0.0.0:{PORT}']
 
 # Telethon client
-# client = TelegramClient(MemorySession(), API_ID, API_HASH)
-client = TelegramClient(SESSION, API_ID, API_HASH)
+client = TelegramClient(MemorySession(), API_ID, API_HASH)
+# client = TelegramClient(SESSION, API_ID, API_HASH)
 # client.parse_mode = 'html'  # <- Render things nicely
 phone = None
 
