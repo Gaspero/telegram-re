@@ -54,9 +54,10 @@ API_ID = int(os.environ.get('API_ID', '0'))
 API_HASH = os.environ.get('API_HASH', '')
 MASTER = int(os.environ.get('MASTER', '0'))
 SLAVE = int(os.environ.get('SLAVE', '0'))
+PORT = int(os.environ.get('PORT', '8000'))
 
 config = hypercorn.Config()
-# config._bind = ['127.0.0.1:80']
+config._bind = [f'127.0.0.1:{PORT}']
 
 # Telethon client
 client = TelegramClient(SESSION, API_ID, API_HASH)
