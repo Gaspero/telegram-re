@@ -69,7 +69,7 @@ client = TelegramClient(MemorySession(), API_ID, API_HASH)
 # client.parse_mode = 'html'  # <- Render things nicely
 # phone = None
 phone = os.environ.get('PHONE', '')
-logging.log('INFO', phone)
+logging.info(phone)
 
 # Quart app
 app = Quart(__name__)
