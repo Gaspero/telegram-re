@@ -53,15 +53,18 @@ CODE_FORM = '''
 SESSION = os.environ.get('TG_SESSION', 'quart')
 API_ID = int(os.environ.get('API_ID', '0'))
 API_HASH = os.environ.get('API_HASH', '')
+# must be channel id (int, positive)
 MASTER = int(os.environ.get('MASTER', '0'))
+# must be chat id (int, negative)
 SLAVE = int(os.environ.get('SLAVE', '0'))
 PORT = int(os.environ.get('PORT', '8000'))
 
 config = hypercorn.Config()
-config._bind = [f'0.0.0.0:{PORT}']
+config._bind = [f'127.0.0.1:{PORT}']
 
 # Telethon client
-client = TelegramClient(MemorySession(), API_ID, API_HASH)
+# client = TelegramClient(MemorySession(), API_ID, API_HASH)
+client = TelegramClient(SESSION, API_ID, API_HASH)
 # client.parse_mode = 'html'  # <- Render things nicely
 phone = None
 
