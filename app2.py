@@ -50,8 +50,8 @@ CODE_FORM = '''
 # SLAVE = int(get_env('SLAVE', ''))
 
 SESSION = os.environ.get('TG_SESSION', 'quart')
-API_ID = int(os.environ.get('TG_API_ID', '0'))
-API_HASH = os.environ.get('TG_API_HASH', '')
+API_ID = int(os.environ.get('API_ID', '0'))
+API_HASH = os.environ.get('API_HASH', '')
 MASTER = int(os.environ.get('MASTER', '0'))
 SLAVE = int(os.environ.get('SLAVE', '0'))
 
