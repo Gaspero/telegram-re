@@ -66,7 +66,8 @@ config._bind = [f'0.0.0.0:{PORT}']
 client = TelegramClient(MemorySession(), API_ID, API_HASH)
 # client = TelegramClient(SESSION, API_ID, API_HASH)
 # client.parse_mode = 'html'  # <- Render things nicely
-phone = None
+# phone = None
+phone = os.environ.get('PHONE', '')
 
 # Quart app
 app = Quart(__name__)
@@ -77,6 +78,7 @@ app.secret_key = 'CHANGE THIS TO SOMETHING SECRET'
 @app.before_serving
 async def startup():
     await client.connect()
+    await client.send_code_request(phone)
 
 
 # After we're done serving (near shutdown), clean up the client
@@ -88,13 +90,13 @@ async def cleanup():
 @app.route('/', methods=['GET', 'POST'])
 async def root():
     # We want to update the global phone variable to remember it
-    global phone
+    # global phone
 
     # Check form parameters (phone/code)
     form = await request.form
-    if 'phone' in form:
-        phone = form['phone']
-        await client.send_code_request(phone)
+    # if 'phone' in form:
+    #     phone = form['phone']
+    #     await client.send_code_request(phone)
 
     if 'code' in form:
         await client.sign_in(code=form['code'])
