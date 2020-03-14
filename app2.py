@@ -57,7 +57,7 @@ SLAVE = int(os.environ.get('SLAVE', '0'))
 PORT = int(os.environ.get('PORT', '8000'))
 
 config = hypercorn.Config()
-config._bind = [f'127.0.0.1:{PORT}']
+config._bind = [f'0.0.0.0:{PORT}']
 
 # Telethon client
 client = TelegramClient(SESSION, API_ID, API_HASH)
