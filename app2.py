@@ -94,6 +94,7 @@ async def root():
 
     # Check form parameters (phone/code)
     form = await request.form
+    # await client.send_code_request(phone)
     # if 'phone' in form:
     #     phone = form['phone']
     #     await client.send_code_request(phone)
