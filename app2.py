@@ -11,10 +11,10 @@ logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s'
 
 
 def get_env(name, message):
-    # if name in os.environ:
-    #     return os.environ[name]
-    # return input(message)
-    return os.environ.get(name, '')
+    if name in os.environ:
+        return os.environ[name]
+    return input(message)
+    # return os.environ.get(name, '')
 
 
 BASE_TEMPLATE = '''
@@ -43,11 +43,17 @@ CODE_FORM = '''
 '''
 
 # Session name, API ID and hash to use; loaded from environmental variables
+# SESSION = os.environ.get('TG_SESSION', 'quart')
+# API_ID = int(get_env('TG_API_ID', 'Enter your API ID: '))
+# API_HASH = get_env('TG_API_HASH', 'Enter your API hash: ')
+# MASTER = int(get_env('MASTER', ''))
+# SLAVE = int(get_env('SLAVE', ''))
+
 SESSION = os.environ.get('TG_SESSION', 'quart')
-API_ID = int(get_env('TG_API_ID', 'Enter your API ID: '))
-API_HASH = get_env('TG_API_HASH', 'Enter your API hash: ')
-MASTER = int(get_env('MASTER', ''))
-SLAVE = int(get_env('SLAVE', ''))
+API_ID = int(os.environ.get('TG_API_ID', '0'))
+API_HASH = os.environ.get('TG_API_HASH', '')
+MASTER = int(os.environ.get('MASTER', '0'))
+SLAVE = int(os.environ.get('SLAVE', '0'))
 
 
 # Telethon client
