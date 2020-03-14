@@ -61,6 +61,7 @@ PORT = int(os.environ.get('PORT', '8000'))
 
 config = hypercorn.Config()
 config._bind = [f'0.0.0.0:{PORT}']
+config._log = logging.Logger
 
 # Telethon client
 client = TelegramClient(MemorySession(), API_ID, API_HASH)
@@ -68,6 +69,7 @@ client = TelegramClient(MemorySession(), API_ID, API_HASH)
 # client.parse_mode = 'html'  # <- Render things nicely
 # phone = None
 phone = os.environ.get('PHONE', '')
+logging.log('INFO', phone)
 
 # Quart app
 app = Quart(__name__)
