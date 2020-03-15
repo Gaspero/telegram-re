@@ -10,7 +10,6 @@ logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s'
 
 
 SESSION_STRING = os.environ.get('SESSION_STRING', '')
-print(SESSION_STRING)
 API_ID = int(os.environ.get('API_ID', '0'))
 API_HASH = os.environ.get('API_HASH', '')
 # must be channel id (int, positive)
@@ -27,7 +26,7 @@ async def my_event_handler(event):
     sender = await event.get_sender()
     print(sender)
     if sender.id == MASTER:
-        await client.send_message(SLAVE, event.raw_text)
+        await client.send_message(entity=SLAVE, message=event.message)
 
 client.start()
 logging.info('client started')
