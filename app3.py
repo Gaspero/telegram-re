@@ -4,6 +4,7 @@ from telethon.sessions import StringSession
 import logging
 import sys
 from telethon.tl.types import MessageEntityTextUrl, MessageEntityUrl, MessageEntityMention
+from channels import channels
 
 
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
@@ -21,14 +22,13 @@ PORT = int(os.environ.get('PORT', '8000'))
 
 client = TelegramClient(StringSession(SESSION_STRING), API_ID, API_HASH)
 
-channels = {1262282428: -1001469552065, 1272721495: -1001381191322}
-
 
 async def forbidden(event):
     if event.message.entities:
         for entity in event.message.entities:
             if isinstance(entity, (MessageEntityTextUrl, MessageEntityUrl, MessageEntityMention)):
                 return True
+
 
 @client.on(events.NewMessage)
 async def my_event_handler(event):
