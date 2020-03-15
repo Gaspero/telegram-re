@@ -2,9 +2,11 @@ import os
 from telethon import TelegramClient, events
 from telethon.sessions import StringSession
 import logging
+import sys
+
 
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
-                    level=logging.WARNING)
+                    level=logging.INFO, stream=sys.stdout)
 
 
 SESSION_STRING = os.environ.get('SESSION_STRING', '')
