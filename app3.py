@@ -8,6 +8,7 @@ logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s'
 
 
 SESSION_STRING = os.environ.get('SESSION_STRING', '')
+print(SESSION_STRING)
 API_ID = int(os.environ.get('API_ID', '0'))
 API_HASH = os.environ.get('API_HASH', '')
 # must be channel id (int, positive)
